@@ -3,7 +3,9 @@ const path = require('path')
 
 const input = fs.readFileSync(path.join(__dirname, 'day04.input.txt'), 'utf-8')
 
-const isValidPassport = passport => passport.includes('hgt') && passport.includes('byr')
+const isValidPassport = passport => passport.includes('hgt')
+  && passport.includes('byr')
+  && passport.includes('ecl')
 
 const countPassports = (input) => {
   const passports = input.split('\n\n')
