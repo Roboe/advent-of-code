@@ -11,4 +11,11 @@ hcl:#18171d ecl:amb hgt:170 pid:123456789 iyr:2018 byr:1926`
 
     expect(countPassports(inputMagico)).toEqual(0)
   })
+
+  it('does not count an invalid passport (invalid pid)', () => {
+    const inputMagico = `eyr:1972 cid:100
+hcl:#18171d ecl:amb hgt:170cm pid:186cm iyr:2018 byr:1926`
+
+    expect(countPassports(inputMagico)).toEqual(0)
+  })
 })
