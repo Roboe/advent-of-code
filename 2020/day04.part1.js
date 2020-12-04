@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 
-const REQUIRED_FIELDS = ['hgt', 'byr', 'ecl']
+const REQUIRED_FIELDS = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
 
 const input = fs.readFileSync(path.join(__dirname, 'day04.input.txt'), 'utf-8')
 
