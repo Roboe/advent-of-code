@@ -1,4 +1,8 @@
+const fs = require('fs')
+const path = require('path')
 const { countPassports } = require('./day04.part1.js')
+
+const input = fs.readFileSync(path.join(__dirname, 'day04.input.txt'), 'utf-8')
 
 describe('count passports', () => {
   it('counts a single valid passport', () => {
@@ -56,4 +60,9 @@ hgt:179cm`
 
     expect(countPassports(inputMagico)).toEqual(2)
   })
+
+  it('solves AoC 4 input', () => {
+    expect(countPassports(input)).toEqual(222)
+  })
+
 })
