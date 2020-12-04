@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/4
+
 const REQUIRED_FIELDS = ['byr', 'iyr', 'eyr', 'hgt', 'hcl', 'ecl', 'pid']
 
 
