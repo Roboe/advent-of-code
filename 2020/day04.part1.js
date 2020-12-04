@@ -8,8 +8,7 @@ const isValidPassport = passport => passport.includes('hgt') && passport.include
 const countPassports = (input) => {
   const passports = input.split('\n\n')
 
-  return (isValidPassport(passports[0]) ? 1 : 0)
-    + (passports[1] !== undefined && isValidPassport(passports[1]) ? 1 : 0)
+  return passports.filter(isValidPassport).length
 }
 
 module.exports = {
