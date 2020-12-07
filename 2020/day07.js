@@ -44,7 +44,20 @@ const checkAvailability = (input, kind) => {
         .length
 }
 
+const checkContainedBags = (input, kind) => {
+    const rules = parseRules(input)
+    return rules[kind].reduce((accumulator, contentEntry) => {
+        return accumulator
+            + contentEntry.quantity
+            + contentEntry.quantity * checkContainedBags(
+                input,
+                contentEntry.kind,
+            )
+    }, 0)
+}
+
 module.exports = {
     parseRules,
     checkAvailability,
+    checkContainedBags,
 }
