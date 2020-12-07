@@ -1,3 +1,5 @@
+// https://adventofcode.com/2020/day/7
+
 const ADJ_CLR_BAG = /(\w+ \w+) bags/
 const QTY_ADJ_CLR_BAG = /(\d+) (\w+ \w+) bags?/
 const NO_OTHER_BAGS = /no other bags/
