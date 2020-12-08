@@ -41,9 +41,23 @@ def find_seat_id(directions):
     return calc_seat_id(find_seat(directions))
 
 
+def calc_all_seat_ids(directions):
+    return [find_seat_id(direction) for direction in directions]
+
+
 def find_highest_seat_id(directions):
-    seat_ids = [find_seat_id(direction) for direction in directions]
-    return max(seat_ids)
+    return max(calc_all_seat_ids(directions))
+
+
+def find_hole_in_range(range):
+    current, *next_range = range
+    hole = current + 1
+    return hole if hole != next_range[0] else find_hole_in_range(next_range)
+
+
+def find_missing_seat_id(directions):
+    sorted_seat_ids = sorted(calc_all_seat_ids(directions))
+    return find_hole_in_range(sorted_seat_ids)
 
 
 def test_find_correct_row():
@@ -76,3 +90,7 @@ def test_find_correct_seat_id():
 
 def test_solve_aoc_5_part_1():
     assert find_highest_seat_id(input) == 883
+
+
+def test_solve_aoc_5_part_2():
+    assert find_missing_seat_id(input) == 532
