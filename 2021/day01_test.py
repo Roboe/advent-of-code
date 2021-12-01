@@ -20,7 +20,7 @@ def parse_measurements(raw_measurements):
     return measurement
 
 
-def group_measures_by_three(measurements):
+def sum_groups_of_three(measurements):
     return [
         measurements[i - 2] + measurements[i - 1] + measurements[i]
         for i in range(len(measurements))
@@ -62,7 +62,7 @@ def test_check_depth_increases():
         False,
     ]
     assert map_depth_increases(
-        group_measures_by_three(parse_measurements(exampleInput))
+        sum_groups_of_three(parse_measurements(exampleInput))
     ) == [
         # A: 607 (N/A - no previous sum)
         True,  # B: 618 (increased)
@@ -78,7 +78,7 @@ def test_check_depth_increases():
 def test_count_depth_increases():
     assert count_depth_increases(parse_measurements(exampleInput)) == 7
     assert (
-        count_depth_increases(group_measures_by_three(parse_measurements(exampleInput)))
+        count_depth_increases(sum_groups_of_three(parse_measurements(exampleInput)))
         == 5
     )
 
@@ -87,8 +87,8 @@ def test_solve_aoc_1_part_1():
     assert count_depth_increases(parse_measurements(input)) == 1228
 
 
-def test_group_by_three():
-    assert group_measures_by_three(parse_measurements(exampleInput)) == [
+def test_sum_groups_of_three():
+    assert sum_groups_of_three(parse_measurements(exampleInput)) == [
         607,
         618,
         618,
@@ -101,7 +101,4 @@ def test_group_by_three():
 
 
 def test_solve_aoc_1_part_2():
-    assert (
-        count_depth_increases(group_measures_by_three(parse_measurements(input)))
-        == 1257
-    )
+    assert count_depth_increases(sum_groups_of_three(parse_measurements(input))) == 1257
