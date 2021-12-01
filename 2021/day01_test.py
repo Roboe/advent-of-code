@@ -15,12 +15,14 @@ exampleInput = """199
 263""".splitlines()
 
 
+def parse_measurements(raw_measurements):
+    measurement = [int(raw_measurement) for raw_measurement in raw_measurements]
+    return measurement
+
+
 def map_depth_increases(measurements):
-    measurement_numbers = [int(raw_measurement) for raw_measurement in measurements]
     return [
-        measurement_numbers[i] > measurement_numbers[i - 1]
-        for i in range(len(measurements))
-        if i > 0
+        measurements[i] > measurements[i - 1] for i in range(len(measurements)) if i > 0
     ]
 
 
@@ -35,7 +37,7 @@ def count_depth_increases(measurements):
 
 
 def test_check_depth_increases():
-    assert map_depth_increases(exampleInput) == [
+    assert map_depth_increases(parse_measurements(exampleInput)) == [
         # (N/A - no previous measurement)
         True,  # 200 (increased)
         True,  # 208 (increased)
@@ -47,12 +49,15 @@ def test_check_depth_increases():
         False,  # 260 (decreased)
         True,  # 263 (increased)
     ]
-    assert map_depth_increases(["986", "1001", "998"]) == [True, False]
+    assert map_depth_increases(parse_measurements(["986", "1001", "998"])) == [
+        True,
+        False,
+    ]
 
 
 def test_count_depth_increases():
-    assert count_depth_increases(exampleInput) == 7
+    assert count_depth_increases(parse_measurements(exampleInput)) == 7
 
 
 def test_solve_aoc_1_part_1():
-    assert count_depth_increases(input) == 1228
+    assert count_depth_increases(parse_measurements(input)) == 1228
