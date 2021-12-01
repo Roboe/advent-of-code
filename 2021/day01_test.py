@@ -13,3 +13,11 @@ exampleInput = """199
 269
 260
 263""".splitlines()
+
+
+def count_depth_increases(measurements):
+    return len(measurements)
+
+
+def test_count_depth_increases():
+    assert count_depth_increases(exampleInput) == 7
