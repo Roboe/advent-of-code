@@ -98,3 +98,10 @@ def test_group_by_three():
         769,
         792,
     ]
+
+
+def test_solve_aoc_1_part_2():
+    assert (
+        count_depth_increases(group_measures_by_three(parse_measurements(input)))
+        == None
+    )
