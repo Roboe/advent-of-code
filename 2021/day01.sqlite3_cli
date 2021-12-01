@@ -17,3 +17,26 @@ SELECT 'part 1'
 FROM PART_1
 WHERE PART_1.depth > PART_1.previous_depth
 ;
+
+WITH THREE_GROUP AS (
+    SELECT depth
+    ,      (CASE
+              WHEN rowid > 2 THEN SUM(depth) OVER window
+              ELSE NULL
+            END
+    ) AS sum_depth
+    FROM INPUT
+    WINDOW window AS (ROWS BETWEEN 2 PRECEDING AND CURRENT ROW)
+)
+,    PART_2 AS (
+    SELECT THREE_GROUP.depth AS depth
+    ,      THREE_GROUP.sum_depth AS sum_depth
+    ,      LAG(THREE_GROUP.sum_depth) OVER window AS previous_sum_depth
+    FROM THREE_GROUP
+    WINDOW window AS (ROWS BETWEEN 1 PRECEDING AND CURRENT ROW)
+)
+SELECT 'part 2'
+,      COUNT(*)
+FROM PART_2
+WHERE PART_2.sum_depth > PART_2.previous_sum_depth
+;
