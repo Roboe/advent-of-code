@@ -1,0 +1,19 @@
+-- IMPORTANT Creating the table is mandatory.
+-- It allows us to include the first line of the input textfile as a row.
+-- Otherwise, the textfile will be parsed as a CSV with headers.
+CREATE TEMP TABLE INPUT(depth INTEGER)
+;
+
+.import day01.input.txt INPUT
+
+WITH PART_1 AS (
+    SELECT depth
+    ,      LAG(depth) OVER window AS previous_depth
+    FROM INPUT
+    WINDOW window AS (ROWS BETWEEN 1 PRECEDING AND CURRENT ROW)
+)
+SELECT 'part 1'
+,      COUNT(*)
+FROM PART_1
+WHERE PART_1.depth > PART_1.previous_depth
+;
