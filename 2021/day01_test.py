@@ -22,6 +22,10 @@ def parse_measurements(raw_measurements):
     return measurement
 
 
+def group_measures_by_three(measurements):
+    return measurements
+
+
 def map_depth_increases(measurements):
     return [
         measurements[i] > measurements[i - 1] for i in range(len(measurements)) if i > 0
@@ -74,3 +78,10 @@ def test_count_depth_increases():
 
 def test_solve_aoc_1_part_1():
     assert count_depth_increases(parse_measurements(input)) == 1228
+
+
+def test_group_by_three():
+    assert (
+        group_measures_by_three(parse_measurements(exampleInput))
+        == example_part2_grouping_by_three
+    )
