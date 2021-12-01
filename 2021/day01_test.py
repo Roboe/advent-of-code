@@ -44,6 +44,7 @@ def test_check_depth_increases():
         False,  # 260 (decreased)
         True,  # 263 (increased)
     ]
+    assert map_depth_increases(["986", "1001", "998"]) == [True, False]
 
 
 def test_count_depth_increases():
