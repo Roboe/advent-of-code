@@ -16,8 +16,11 @@ exampleInput = """199
 
 
 def map_depth_increases(measurements):
+    measurement_numbers = [int(raw_measurement) for raw_measurement in measurements]
     return [
-        measurements[i] > measurements[i - 1] for i in range(len(measurements)) if i > 0
+        measurement_numbers[i] > measurement_numbers[i - 1]
+        for i in range(len(measurements))
+        if i > 0
     ]
 
 
