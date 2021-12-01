@@ -23,7 +23,11 @@ def parse_measurements(raw_measurements):
 
 
 def group_measures_by_three(measurements):
-    return measurements
+    return [
+        measurements[i - 2] + measurements[i - 1] + measurements[i]
+        for i in range(len(measurements))
+        if i > 1
+    ]
 
 
 def map_depth_increases(measurements):
