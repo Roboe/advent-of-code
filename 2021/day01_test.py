@@ -55,4 +55,4 @@ def test_count_depth_increases():
 
 
 def test_solve_aoc_1_part_1():
-    assert count_depth_increases(input) == None
+    assert count_depth_increases(input) == 1228
