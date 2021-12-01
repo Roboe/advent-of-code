@@ -22,7 +22,13 @@ def map_depth_increases(measurements):
 
 
 def count_depth_increases(measurements):
-    return len(map_depth_increases(measurements))
+    return len(
+        [
+            does_increase
+            for does_increase in map_depth_increases(measurements)
+            if does_increase == True
+        ]
+    )
 
 
 def test_check_depth_increases():
