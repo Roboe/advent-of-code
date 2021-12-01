@@ -20,3 +20,13 @@ Para correr los _tests_:
 Para formatear el código según la PEP8:
 
     $ black . # o dayN_test.py
+
+
+SQL (SQLite)
+---
+
+SQL **es** un lenguaje de programación. Específico de dominio (DSL), no de uso general (GPL), claro. En realidad solo voy a resolver un puzzle con SQL, me han retado (_How dare you, @juanPorti!_). Y resulta que con la CLI de SQLite3 [se pueden importar CSV](https://www.sqlite.org/cli.html#importing_csv_files).
+
+Para ejecutar las consultas:
+
+    $ cat day01.sqlite3_cli | sqlite3
