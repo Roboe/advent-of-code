@@ -15,8 +15,27 @@ exampleInput = """199
 263""".splitlines()
 
 
+def map_depth_increases(measurements):
+    return [False for measurement in measurements]
+
+
 def count_depth_increases(measurements):
-    return len(measurements)
+    return len(map_depth_increases(measurements))
+
+
+def test_check_depth_increases():
+    assert map_depth_increases(exampleInput) == [
+        # (N/A - no previous measurement)
+        True,  # 200 (increased)
+        True,  # 208 (increased)
+        True,  # 210 (increased)
+        False,  # 200 (decreased)
+        True,  # 207 (increased)
+        True,  # 240 (increased)
+        True,  # 269 (increased)
+        False,  # 260 (decreased)
+        True,  # 263 (increased)
+    ]
 
 
 def test_count_depth_increases():
