@@ -52,3 +52,7 @@ def test_check_depth_increases():
 
 def test_count_depth_increases():
     assert count_depth_increases(exampleInput) == 7
+
+
+def test_solve_aoc_1_part_1():
+    assert count_depth_increases(input) == None
