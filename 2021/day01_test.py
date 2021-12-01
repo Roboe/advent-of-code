@@ -14,8 +14,6 @@ exampleInput = """199
 260
 263""".splitlines()
 
-example_part2_grouping_by_three = [607, 618, 618, 617, 647, 716, 769, 792]
-
 
 def parse_measurements(raw_measurements):
     measurement = [int(raw_measurement) for raw_measurement in raw_measurements]
@@ -63,7 +61,9 @@ def test_check_depth_increases():
         True,
         False,
     ]
-    assert map_depth_increases(example_part2_grouping_by_three) == [
+    assert map_depth_increases(
+        group_measures_by_three(parse_measurements(exampleInput))
+    ) == [
         # A: 607 (N/A - no previous sum)
         True,  # B: 618 (increased)
         False,  # C: 618 (no change)
@@ -77,7 +77,10 @@ def test_check_depth_increases():
 
 def test_count_depth_increases():
     assert count_depth_increases(parse_measurements(exampleInput)) == 7
-    assert count_depth_increases(example_part2_grouping_by_three) == 5
+    assert (
+        count_depth_increases(group_measures_by_three(parse_measurements(exampleInput)))
+        == 5
+    )
 
 
 def test_solve_aoc_1_part_1():
@@ -85,7 +88,13 @@ def test_solve_aoc_1_part_1():
 
 
 def test_group_by_three():
-    assert (
-        group_measures_by_three(parse_measurements(exampleInput))
-        == example_part2_grouping_by_three
-    )
+    assert group_measures_by_three(parse_measurements(exampleInput)) == [
+        607,
+        618,
+        618,
+        617,
+        647,
+        716,
+        769,
+        792,
+    ]
