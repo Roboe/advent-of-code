@@ -61,3 +61,12 @@ def test_planned_course_byproduct():
 
     # Solve AoC 2 part 1
     assert calculate_planned_course_byproduct(parse_commands(input)) == 2091984
+
+
+def calculate_planned_course_corrected(commands):
+    return calculate_planned_course(commands)
+
+
+def test_calculate_planned_course_corrected():
+    assert calculate_planned_course_corrected(parse_commands("")) == (0, 0)
+    assert calculate_planned_course_corrected(parse_commands(example_input)) == (15, 60)
