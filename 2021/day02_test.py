@@ -9,3 +9,11 @@ forward 8
 up 3
 down 8
 forward 2""".splitlines()
+
+
+def calculate_planned_course_byproduct(commands):
+    return 0
+
+
+def test_planned_course_byproduct():
+    assert calculate_planned_course_byproduct(example_input) == 150
