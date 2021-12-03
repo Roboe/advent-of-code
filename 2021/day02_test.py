@@ -64,7 +64,23 @@ def test_planned_course_byproduct():
 
 
 def calculate_planned_course_corrected(commands):
-    return calculate_planned_course(commands)
+    horizontal_position = 0
+    depth = 0
+    aim = 0
+
+    for (instruction, value) in commands:
+        if instruction == "down":
+            aim = aim + value
+        elif instruction == "up":
+            aim = aim - value
+        elif instruction == "forward":
+            horizontal_position = horizontal_position + value
+            depth = depth + aim * value
+
+    return (
+        horizontal_position,
+        depth,
+    )
 
 
 def calculate_planned_course_byproduct_corrected(commands):
