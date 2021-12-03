@@ -67,6 +67,17 @@ def calculate_planned_course_corrected(commands):
     return calculate_planned_course(commands)
 
 
+def calculate_planned_course_byproduct_corrected(commands):
+    return calculate_planned_course_byproduct(commands)
+
+
 def test_calculate_planned_course_corrected():
     assert calculate_planned_course_corrected(parse_commands("")) == (0, 0)
     assert calculate_planned_course_corrected(parse_commands(example_input)) == (15, 60)
+
+
+def test_planned_course_byproduct_corrected():
+    assert (
+        calculate_planned_course_byproduct_corrected(parse_commands(example_input))
+        == 900
+    )
