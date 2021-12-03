@@ -58,3 +58,6 @@ def test_calculate_planned_course():
 
 def test_planned_course_byproduct():
     assert calculate_planned_course_byproduct(parse_commands(example_input)) == 150
+
+    # Solve AoC 2 part 1
+    assert calculate_planned_course_byproduct(parse_commands(input)) == None
