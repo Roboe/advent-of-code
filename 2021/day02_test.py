@@ -12,7 +12,9 @@ forward 2""".splitlines()
 
 
 def parse_commands(input):
-    return input
+    return [
+        (parts[0], int(parts[1])) for parts in map(lambda item: item.split(" "), input)
+    ]
 
 
 def calculate_planned_course(commands, horizontal_position=0, depth=0):
