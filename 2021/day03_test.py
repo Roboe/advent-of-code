@@ -17,8 +17,16 @@ example_input = """00100
 01010""".splitlines()
 
 
+def calculate_gamma_rate(diagnostic_report):
+    return 0
+
+
 def calculate_power_consumption(diagnostic_report):
     return 0
+
+
+def test_calculate_gamma_rate():
+    assert calculate_gamma_rate(example_input) == 22  # 10110
 
 
 def test_calculate_power_consumption():
