@@ -32,7 +32,17 @@ def calculate_gamma_rate(diagnostic_report):
 
 
 def calculate_epsilon_rate(diagnostic_report):
-    return 0
+    acc_weigths = [0 for _ in range(len(diagnostic_report[0]))]
+
+    for binary_numbers in diagnostic_report:
+        weights = [1 if binary_digit == "1" else -1 for binary_digit in binary_numbers]
+        for index, weight in enumerate(weights):
+            acc_weigths[index] += weight
+
+    gamma_digits = ["0" if weight > 0 else "1" for weight in acc_weigths]
+    binary_epsilon = "".join(gamma_digits)
+
+    return int(binary_epsilon, 2)
 
 
 def calculate_power_consumption(diagnostic_report):
