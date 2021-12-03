@@ -100,4 +100,7 @@ def test_planned_course_byproduct_corrected():
     )
 
     # Solve AoC 2 part 2
-    assert calculate_planned_course_byproduct_corrected(parse_commands(input)) == None
+    assert (
+        calculate_planned_course_byproduct_corrected(parse_commands(input))
+        == 2086261056
+    )
