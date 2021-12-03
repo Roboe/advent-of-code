@@ -11,10 +11,13 @@ down 8
 forward 2""".splitlines()
 
 
+def parse_line(line):
+    instruction, raw_number = line.split(" ")
+    return (instruction, int(raw_number))
+
+
 def parse_commands(input):
-    return [
-        (parts[0], int(parts[1])) for parts in map(lambda item: item.split(" "), input)
-    ]
+    return list(map(parse_line, input))
 
 
 def calculate_planned_course(commands, horizontal_position=0, depth=0):
