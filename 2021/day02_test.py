@@ -84,7 +84,8 @@ def calculate_planned_course_corrected(commands):
 
 
 def calculate_planned_course_byproduct_corrected(commands):
-    return calculate_planned_course_byproduct(commands)
+    horizontal_position, depth = calculate_planned_course_corrected(commands)
+    return horizontal_position * depth
 
 
 def test_calculate_planned_course_corrected():
