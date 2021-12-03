@@ -66,8 +66,16 @@ def test_calculate_power_consumption():
     assert calculate_power_consumption(input) == 841526
 
 
+def calculate_oxygen_generator_rating(diagnostic_report):
+    return 0
+
+
 def calculate_life_support_rating(diagnostic_report):
     return 0
+
+
+def test_calculate_oxygen_generator_rating():
+    assert calculate_oxygen_generator_rating(example_input) == 23  # 10111
 
 
 def test_calculate_life_support_rating():
