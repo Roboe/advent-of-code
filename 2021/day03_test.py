@@ -15,3 +15,11 @@ example_input = """00100
 11001
 00010
 01010""".splitlines()
+
+
+def calculate_power_consumption(diagnostic_report):
+    return 0
+
+
+def test_calculate_power_consumption():
+    assert calculate_power_consumption(example_input) == 198
