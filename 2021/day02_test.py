@@ -20,7 +20,15 @@ def parse_commands(input):
     return list(map(parse_line, input))
 
 
-def calculate_planned_course(commands, horizontal_position=0, depth=0):
+def calculate_planned_course(commands):
+    horizontal_position = sum(
+        value for (instruction, value) in commands if instruction == "forward"
+    )
+
+    acc_up = sum(value for (instruction, value) in commands if instruction == "up")
+    acc_down = sum(value for (instruction, value) in commands if instruction == "down")
+    depth = acc_down - acc_up
+
     return (
         horizontal_position,
         depth,
@@ -43,8 +51,8 @@ def test_parse_commands():
 
 
 def test_calculate_planned_course():
-    assert calculate_planned_course("") == (0, 0)
-    assert calculate_planned_course(example_input) == (15, 10)
+    assert calculate_planned_course(parse_commands("")) == (0, 0)
+    assert calculate_planned_course(parse_commands(example_input)) == (15, 10)
 
 
 def test_planned_course_byproduct():
