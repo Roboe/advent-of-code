@@ -11,8 +11,20 @@ down 8
 forward 2""".splitlines()
 
 
+def calculate_planned_course(commands, horizontal_position=0, depth=0):
+    return (
+        horizontal_position,
+        depth,
+    )
+
+
 def calculate_planned_course_byproduct(commands):
     return 0
+
+
+def test_calculate_planned_course():
+    assert calculate_planned_course("") == (0, 0)
+    assert calculate_planned_course(example_input) == (15, 10)
 
 
 def test_planned_course_byproduct():
