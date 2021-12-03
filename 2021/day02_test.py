@@ -98,3 +98,6 @@ def test_planned_course_byproduct_corrected():
         calculate_planned_course_byproduct_corrected(parse_commands(example_input))
         == 900
     )
+
+    # Solve AoC 2 part 2
+    assert calculate_planned_course_byproduct_corrected(parse_commands(input)) == None
