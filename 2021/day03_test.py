@@ -46,7 +46,9 @@ def calculate_epsilon_rate(diagnostic_report):
 
 
 def calculate_power_consumption(diagnostic_report):
-    return 0
+    return calculate_gamma_rate(diagnostic_report) * calculate_epsilon_rate(
+        diagnostic_report
+    )
 
 
 def test_calculate_gamma_rate():
