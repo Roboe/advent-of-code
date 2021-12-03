@@ -67,7 +67,24 @@ def test_calculate_power_consumption():
 
 
 def calculate_oxygen_generator_rating(diagnostic_report):
-    return 0
+    filtered_list = diagnostic_report
+
+    for bit_index in range(len(diagnostic_report[0])):
+        zeros = []
+        ones = []
+
+        for binary_numbers in filtered_list:
+            bit = binary_numbers[bit_index]
+            if bit == "0":
+                zeros.append(binary_numbers)
+            elif bit == "1":
+                ones.append(binary_numbers)
+            else:
+                continue
+
+        filtered_list = zeros if len(zeros) > len(ones) else ones
+
+    return int(filtered_list[0], 2)
 
 
 def calculate_co2_scrubber_rating(diagnostic_report):
