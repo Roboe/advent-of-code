@@ -64,3 +64,11 @@ def test_calculate_power_consumption():
 
     # Solve AoC 3 part 1
     assert calculate_power_consumption(input) == 841526
+
+
+def calculate_life_support_rating(diagnostic_report):
+    return 0
+
+
+def test_calculate_life_support_rating():
+    assert calculate_life_support_rating(example_input) == 230
