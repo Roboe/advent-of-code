@@ -70,12 +70,20 @@ def calculate_oxygen_generator_rating(diagnostic_report):
     return 0
 
 
+def calculate_co2_scrubber_rating(diagnostic_report):
+    return 0
+
+
 def calculate_life_support_rating(diagnostic_report):
     return 0
 
 
 def test_calculate_oxygen_generator_rating():
     assert calculate_oxygen_generator_rating(example_input) == 23  # 10111
+
+
+def test_calculate_co2_scrubber_rating():
+    assert calculate_co2_scrubber_rating(example_input) == 10  # 01010
 
 
 def test_calculate_life_support_rating():
