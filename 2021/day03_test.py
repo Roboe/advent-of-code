@@ -63,4 +63,4 @@ def test_calculate_power_consumption():
     assert calculate_power_consumption(example_input) == 198
 
     # Solve AoC 3 part 1
-    assert calculate_power_consumption(input) == None
+    assert calculate_power_consumption(input) == 841526
