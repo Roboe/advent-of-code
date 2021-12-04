@@ -112,7 +112,9 @@ def calculate_co2_scrubber_rating(diagnostic_report):
 
 
 def calculate_life_support_rating(diagnostic_report):
-    return 0
+    return calculate_oxygen_generator_rating(
+        diagnostic_report
+    ) * calculate_co2_scrubber_rating(diagnostic_report)
 
 
 def test_calculate_oxygen_generator_rating():
