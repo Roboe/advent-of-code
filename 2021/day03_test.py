@@ -17,7 +17,7 @@ example_input = """00100
 01010""".splitlines()
 
 
-def calculate_gamma_rate(diagnostic_report):
+def calculate_gamma_epsilon_rates(diagnostic_report):
     acc_weigths = [0 for _ in range(len(diagnostic_report[0]))]
 
     for binary_numbers in diagnostic_report:
@@ -26,29 +26,26 @@ def calculate_gamma_rate(diagnostic_report):
             acc_weigths[index] += weight
 
     gamma_digits = ["1" if weight > 0 else "0" for weight in acc_weigths]
+    epsilon_digits = ["0" if weight > 0 else "1" for weight in acc_weigths]
     binary_gamma = "".join(gamma_digits)
+    binary_epsilon = "".join(epsilon_digits)
 
-    return int(binary_gamma, 2)
+    return (int(binary_gamma, 2), int(binary_epsilon, 2))
+
+
+def calculate_gamma_rate(diagnostic_report):
+    (gamma_rate, _) = calculate_gamma_epsilon_rates(diagnostic_report)
+    return gamma_rate
 
 
 def calculate_epsilon_rate(diagnostic_report):
-    acc_weigths = [0 for _ in range(len(diagnostic_report[0]))]
-
-    for binary_numbers in diagnostic_report:
-        weights = [1 if binary_digit == "1" else -1 for binary_digit in binary_numbers]
-        for index, weight in enumerate(weights):
-            acc_weigths[index] += weight
-
-    gamma_digits = ["0" if weight > 0 else "1" for weight in acc_weigths]
-    binary_epsilon = "".join(gamma_digits)
-
-    return int(binary_epsilon, 2)
+    (_, epsilon_rate) = calculate_gamma_epsilon_rates(diagnostic_report)
+    return epsilon_rate
 
 
 def calculate_power_consumption(diagnostic_report):
-    return calculate_gamma_rate(diagnostic_report) * calculate_epsilon_rate(
-        diagnostic_report
-    )
+    (gamma_rate, epsilon_rate) = calculate_gamma_epsilon_rates(diagnostic_report)
+    return gamma_rate * epsilon_rate
 
 
 def test_calculate_gamma_rate():
