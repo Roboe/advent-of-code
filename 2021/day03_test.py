@@ -127,3 +127,6 @@ def test_calculate_co2_scrubber_rating():
 
 def test_calculate_life_support_rating():
     assert calculate_life_support_rating(example_input) == 230
+
+    # Solve AoC 3 part 2
+    assert calculate_life_support_rating(input) == None
