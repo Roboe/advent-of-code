@@ -63,28 +63,7 @@ def test_calculate_power_consumption():
     assert calculate_power_consumption(input) == 841526
 
 
-def calculate_oxygen_generator_rating(diagnostic_report):
-    filtered_list = diagnostic_report
-
-    for bit_index in range(len(diagnostic_report[0])):
-        zeros = []
-        ones = []
-
-        for binary_numbers in filtered_list:
-            bit = binary_numbers[bit_index]
-            if bit == "0":
-                zeros.append(binary_numbers)
-            elif bit == "1":
-                ones.append(binary_numbers)
-            else:
-                continue
-
-        filtered_list = zeros if len(zeros) > len(ones) else ones
-
-    return int(filtered_list[0], 2)
-
-
-def calculate_co2_scrubber_rating(diagnostic_report):
+def fold_by_bit_criteria(diagnostic_report, check_keep_zeros):
     filtered_list = diagnostic_report
 
     for bit_index in range(len(diagnostic_report[0])):
@@ -103,9 +82,21 @@ def calculate_co2_scrubber_rating(diagnostic_report):
             else:
                 continue
 
-        filtered_list = ones if len(zeros) > len(ones) else zeros
+        filtered_list = zeros if check_keep_zeros(len(zeros), len(ones)) else ones
 
     return int(filtered_list[0], 2)
+
+
+def calculate_oxygen_generator_rating(diagnostic_report):
+    return fold_by_bit_criteria(
+        diagnostic_report, lambda zeros_qty, ones_qty: zeros_qty > ones_qty
+    )
+
+
+def calculate_co2_scrubber_rating(diagnostic_report):
+    return fold_by_bit_criteria(
+        diagnostic_report, lambda zeros_qty, ones_qty: zeros_qty <= ones_qty
+    )
 
 
 def calculate_life_support_rating(diagnostic_report):
