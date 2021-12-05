@@ -16,7 +16,10 @@ example_input = """0,9 -> 5,9
 
 
 def parse_line(raw_line_of_vent):
-    return raw_line_of_vent
+    [x1, y1, x2, y2] = [
+        int(coord) for coord in raw_line_of_vent.replace(" -> ", ",").split(",")
+    ]
+    return ((x1, y1), (x2, y2))
 
 
 def test_parse_line():
