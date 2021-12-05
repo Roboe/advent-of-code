@@ -114,7 +114,7 @@ def test_trace_line():
         trace_line(parse_line(example_input[1]))
 
 
-def determine_number_of_overlapping_points(lines_of_vents):
+def determine_number_of_overlapping_points(lines_of_vents, include_diagonals=False):
     traced_lines = [
         set(trace_line(line))
         for line in exclude_diagonal_lines(map(parse_line, lines_of_vents))
@@ -139,3 +139,8 @@ def test_determine_number_of_overlapping_points():
 
     # Solve AoC 5 part 1
     assert determine_number_of_overlapping_points(input) == 5698
+
+    assert (
+        determine_number_of_overlapping_points(example_input, include_diagonals=True)
+        == 12
+    )
