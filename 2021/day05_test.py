@@ -136,3 +136,6 @@ def determine_number_of_overlapping_points(lines_of_vents):
 
 def test_determine_number_of_overlapping_points():
     assert determine_number_of_overlapping_points(example_input) == 5
+
+    # Solve AoC 5 part 1
+    assert determine_number_of_overlapping_points(input) == None
