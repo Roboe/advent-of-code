@@ -1,5 +1,7 @@
 # https://adventofcode.com/2021/day/5
 
+from collections import namedtuple
+
 with open("day05.input.txt", "r") as f:
     input = f.read().splitlines()
 
@@ -14,12 +16,18 @@ example_input = """0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2""".splitlines()
 
+Line = namedtuple("Line", "a b")
+Point = namedtuple("Point", "x y")
+
 
 def parse_line(raw_line_of_vent):
     [x1, y1, x2, y2] = [
         int(coord) for coord in raw_line_of_vent.replace(" -> ", ",").split(",")
     ]
-    return ((x1, y1), (x2, y2))
+    return Line(
+        Point(x1, y1),
+        Point(x2, y2),
+    )
 
 
 def test_parse_line():
