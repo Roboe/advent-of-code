@@ -71,6 +71,7 @@ def trace_line(line):
 
 
 def test_trace_line():
+    # 0,9 -> 5,9
     assert trace_line(parse_line(example_input[0])) == [
         (0, 9),
         (1, 9),
@@ -79,6 +80,17 @@ def test_trace_line():
         (4, 9),
         (5, 9),
     ]
+    # 9,4 -> 3,4
+    assert trace_line(parse_line(example_input[2])) == [
+        (3, 4),
+        (4, 4),
+        (5, 4),
+        (6, 4),
+        (7, 4),
+        (8, 4),
+        (9, 4),
+    ]
+    # 7,0 -> 7,4
     assert trace_line(parse_line(example_input[4])) == [
         (7, 0),
         (7, 1),
@@ -86,6 +98,12 @@ def test_trace_line():
         (7, 3),
         (7, 4),
     ]
+    # 2,2 -> 2,1
+    assert trace_line(parse_line(example_input[3])) == [
+        (2, 1),
+        (2, 2),
+    ]
+    # 8,0 -> 0,8
     with pytest.raises(NotImplementedError):
         trace_line(parse_line(example_input[1]))
 
