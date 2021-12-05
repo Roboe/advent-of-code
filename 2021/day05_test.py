@@ -15,6 +15,17 @@ example_input = """0,9 -> 5,9
 5,5 -> 8,2""".splitlines()
 
 
+def parse_line(raw_line_of_vent):
+    return raw_line_of_vent
+
+
+def test_parse_line():
+    assert parse_line(example_input[0]) == ((0, 9), (5, 9))
+    assert parse_line(example_input[1]) == ((8, 0), (0, 8))
+    assert parse_line(example_input[2]) == ((9, 4), (3, 4))
+    assert parse_line(example_input[3]) == ((2, 2), (2, 1))
+
+
 def determine_number_of_overlapping_points(lines_of_vents):
     return 0
 
