@@ -1,5 +1,6 @@
 # https://adventofcode.com/2021/day/5
 
+import pytest
 from collections import namedtuple
 
 with open("day05.input.txt", "r") as f:
@@ -85,6 +86,8 @@ def test_trace_line():
         (7, 3),
         (7, 4),
     ]
+    with pytest.raises(NotImplementedError):
+        trace_line(parse_line(example_input[1]))
 
 
 def determine_number_of_overlapping_points(lines_of_vents):
