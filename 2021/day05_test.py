@@ -115,7 +115,23 @@ def test_trace_line():
 
 
 def determine_number_of_overlapping_points(lines_of_vents):
-    return 0
+    traced_lines = [
+        set(trace_line(line))
+        for line in exclude_diagonal_lines(map(parse_line, lines_of_vents))
+    ]
+
+    intersected_points = set()
+
+    for curr_traced_line in traced_lines:
+        for other_traced_line in traced_lines:
+            if curr_traced_line == other_traced_line:
+                continue
+
+            intersection = curr_traced_line.intersection(other_traced_line)
+
+            intersected_points.update(intersection)
+
+    return len(intersected_points)
 
 
 def test_determine_number_of_overlapping_points():
