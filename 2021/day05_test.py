@@ -13,3 +13,11 @@ example_input = """0,9 -> 5,9
 3,4 -> 1,4
 0,0 -> 8,8
 5,5 -> 8,2""".splitlines()
+
+
+def determine_number_of_overlapping_points(lines_of_vents):
+    return 0
+
+
+def test_determine_number_of_overlapping_points():
+    assert determine_number_of_overlapping_points(example_input) == 5
