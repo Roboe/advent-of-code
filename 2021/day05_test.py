@@ -61,7 +61,12 @@ def test_exclude_diagonal_lines():
 
 
 def trace_line(line):
-    return line
+    if is_horizontal(line):
+        return [Point(line.a.x, y) for y in range(line.a.y, line.b.y + 1)]
+    elif is_vertical(line):
+        return [Point(x, line.a.y) for x in range(line.a.x, line.b.x + 1)]
+    else:
+        raise Exception("Not supported")
 
 
 def test_trace_line():
