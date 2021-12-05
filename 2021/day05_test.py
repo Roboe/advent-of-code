@@ -142,11 +142,14 @@ def test_trace_line():
     ]
 
 
-def determine_number_of_overlapping_points(lines_of_vents, include_diagonals=False):
-    traced_lines = [
-        set(trace_line(line))
-        for line in exclude_diagonal_lines(map(parse_line, lines_of_vents))
-    ]
+def determine_number_of_overlapping_points(raw_lines_of_vents, include_diagonals=False):
+    lines_of_vents = map(parse_line, raw_lines_of_vents)
+
+    selected_lines = (
+        lines_of_vents if include_diagonals else exclude_diagonal_lines(lines_of_vents)
+    )
+
+    traced_lines = [set(trace_line(line)) for line in selected_lines]
 
     intersected_points = set()
 
