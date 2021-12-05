@@ -47,12 +47,20 @@ def is_vertical(line):
     return line.a.y == line.b.y
 
 
-def exclude_diagonal_lines(lines_of_vent):
-    return [line for line in lines_of_vent if is_horizontal(line) or is_vertical(line)]
+def is_diagonal(line):
+    return not is_horizontal(line) and not is_vertical(line)
 
 
 def test_exclude_diagonal_lines():
-    assert exclude_diagonal_lines(map(parse_line, example_input)) == [
+    assert list(
+        filter(
+            lambda line: not is_diagonal(line),
+            map(
+                parse_line,
+                example_input,
+            ),
+        )
+    ) == [
         ((0, 9), (5, 9)),
         ((9, 4), (3, 4)),
         ((2, 2), (2, 1)),
@@ -143,13 +151,11 @@ def test_trace_line():
 
 
 def determine_number_of_overlapping_points(raw_lines_of_vents, include_diagonals=False):
-    lines_of_vents = map(parse_line, raw_lines_of_vents)
-
-    selected_lines = (
-        lines_of_vents if include_diagonals else exclude_diagonal_lines(lines_of_vents)
-    )
-
-    traced_lines = [set(trace_line(line)) for line in selected_lines]
+    traced_lines = [
+        set(trace_line(line_of_vents))
+        for line_of_vents in map(parse_line, raw_lines_of_vents)
+        if include_diagonals or not is_diagonal(line_of_vents)
+    ]
 
     intersected_points = set()
 
