@@ -38,7 +38,12 @@ def test_parse_line():
 
 
 def exclude_diagonal_lines(lines_of_vent):
-    return lines_of_vent
+    return list(
+        filter(
+            lambda line: line.a.x == line.b.x or line.a.y == line.b.y,
+            lines_of_vent,
+        )
+    )
 
 
 def test_exclude_diagonal_lines():
