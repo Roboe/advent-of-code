@@ -67,7 +67,7 @@ def trace_line(line):
     elif is_vertical(line):
         return [Point(x, line.a.y) for x in range(line.a.x, line.b.x + 1)]
     else:
-        raise Exception("Not supported")
+        raise NotImplementedError()
 
 
 def test_trace_line():
