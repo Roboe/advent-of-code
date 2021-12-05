@@ -61,6 +61,13 @@ def test_exclude_diagonal_lines():
     ]
 
 
+def trace_axis(start, end):
+    step = trunc(copysign(1, end - start))
+    path = range(start, end + step, step)
+
+    return path
+
+
 def trace_line(line):
     if is_horizontal(line):
         return [
@@ -73,11 +80,8 @@ def trace_line(line):
             for x in range(min(line.a.x, line.b.x), max(line.a.x, line.b.x) + 1)
         ]
     else:
-        x_step = trunc(copysign(1, line.b.x - line.a.x))
-        xs = range(line.a.x, line.b.x + x_step, x_step)
-
-        y_step = trunc(copysign(1, line.b.y - line.a.y))
-        ys = range(line.a.y, line.b.y + y_step, y_step)
+        xs = trace_axis(line.a.x, line.b.x)
+        ys = trace_axis(line.a.y, line.b.y)
 
         traced_line = [Point(p[0], p[1]) for p in zip(xs, ys)]
         traced_line.sort()
