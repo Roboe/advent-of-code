@@ -181,3 +181,6 @@ def test_determine_number_of_overlapping_points():
         determine_number_of_overlapping_points(example_input, include_diagonals=True)
         == 12
     )
+
+    # Solve AoC 5 part 2
+    assert determine_number_of_overlapping_points(input, include_diagonals=True) == None
