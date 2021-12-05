@@ -79,7 +79,6 @@ def trace_line(line):
         ys = cycle(ys)
 
     traced_line = [Point(p[0], p[1]) for p in zip(xs, ys)]
-    traced_line.sort()
 
     return traced_line
 
@@ -96,13 +95,13 @@ def test_trace_line():
     ]
     # 9,4 -> 3,4
     assert trace_line(parse_line(example_input[2])) == [
-        (3, 4),
-        (4, 4),
-        (5, 4),
-        (6, 4),
-        (7, 4),
-        (8, 4),
         (9, 4),
+        (8, 4),
+        (7, 4),
+        (6, 4),
+        (5, 4),
+        (4, 4),
+        (3, 4),
     ]
     # 7,0 -> 7,4
     assert trace_line(parse_line(example_input[4])) == [
@@ -114,8 +113,8 @@ def test_trace_line():
     ]
     # 2,2 -> 2,1
     assert trace_line(parse_line(example_input[3])) == [
-        (2, 1),
         (2, 2),
+        (2, 1),
     ]
     # 0,0 -> 8,8
     assert trace_line(parse_line(example_input[8])) == [
@@ -131,15 +130,15 @@ def test_trace_line():
     ]
     # 8,0 -> 0,8
     assert trace_line(parse_line(example_input[1])) == [
-        (0, 8),
-        (1, 7),
-        (2, 6),
-        (3, 5),
-        (4, 4),
-        (5, 3),
-        (6, 2),
-        (7, 1),
         (8, 0),
+        (7, 1),
+        (6, 2),
+        (5, 3),
+        (4, 4),
+        (3, 5),
+        (2, 6),
+        (1, 7),
+        (0, 8),
     ]
 
 
