@@ -2,6 +2,7 @@
 
 from collections import namedtuple
 from math import copysign, trunc
+from itertools import cycle
 
 with open("day05.input.txt", "r") as f:
     input = f.read().splitlines()
@@ -69,24 +70,18 @@ def trace_axis(start, end):
 
 
 def trace_line(line):
-    if is_horizontal(line):
-        return [
-            Point(line.a.x, y)
-            for y in range(min(line.a.y, line.b.y), max(line.a.y, line.b.y) + 1)
-        ]
-    elif is_vertical(line):
-        return [
-            Point(x, line.a.y)
-            for x in range(min(line.a.x, line.b.x), max(line.a.x, line.b.x) + 1)
-        ]
-    else:
-        xs = trace_axis(line.a.x, line.b.x)
-        ys = trace_axis(line.a.y, line.b.y)
+    xs = trace_axis(line.a.x, line.b.x)
+    ys = trace_axis(line.a.y, line.b.y)
 
-        traced_line = [Point(p[0], p[1]) for p in zip(xs, ys)]
-        traced_line.sort()
+    if len(xs) < len(ys):
+        xs = cycle(xs)
+    elif len(ys) < len(xs):
+        ys = cycle(ys)
 
-        return traced_line
+    traced_line = [Point(p[0], p[1]) for p in zip(xs, ys)]
+    traced_line.sort()
+
+    return traced_line
 
 
 def test_trace_line():
