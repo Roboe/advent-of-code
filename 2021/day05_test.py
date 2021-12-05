@@ -1,6 +1,7 @@
 # https://adventofcode.com/2021/day/5
 
 from collections import namedtuple
+from math import copysign, trunc
 
 with open("day05.input.txt", "r") as f:
     input = f.read().splitlines()
@@ -72,7 +73,16 @@ def trace_line(line):
             for x in range(min(line.a.x, line.b.x), max(line.a.x, line.b.x) + 1)
         ]
     else:
-        raise NotImplementedError()
+        x_step = trunc(copysign(1, line.b.x - line.a.x))
+        xs = range(line.a.x, line.b.x + x_step, x_step)
+
+        y_step = trunc(copysign(1, line.b.y - line.a.y))
+        ys = range(line.a.y, line.b.y + y_step, y_step)
+
+        traced_line = [Point(p[0], p[1]) for p in zip(xs, ys)]
+        traced_line.sort()
+
+        return traced_line
 
 
 def test_trace_line():
