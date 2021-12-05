@@ -60,6 +60,28 @@ def test_exclude_diagonal_lines():
     ]
 
 
+def trace_line(line):
+    return line
+
+
+def test_trace_line():
+    assert trace_line(parse_line(example_input[0])) == [
+        (0, 9),
+        (1, 9),
+        (2, 9),
+        (3, 9),
+        (4, 9),
+        (5, 9),
+    ]
+    assert trace_line(parse_line(example_input[4])) == [
+        (7, 0),
+        (7, 1),
+        (7, 2),
+        (7, 3),
+        (7, 4),
+    ]
+
+
 def determine_number_of_overlapping_points(lines_of_vents):
     return 0
 
