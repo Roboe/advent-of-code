@@ -37,10 +37,16 @@ def test_parse_line():
     assert parse_line(example_input[3]) == ((2, 2), (2, 1))
 
 
+def is_horizontal(line):
+    return line.a.x == line.b.x
+
+
+def is_vertical(line):
+    return line.a.y == line.b.y
+
+
 def exclude_diagonal_lines(lines_of_vent):
-    return [
-        line for line in lines_of_vent if line.a.x == line.b.x or line.a.y == line.b.y
-    ]
+    return [line for line in lines_of_vent if is_horizontal(line) or is_vertical(line)]
 
 
 def test_exclude_diagonal_lines():
