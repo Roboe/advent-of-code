@@ -41,3 +41,6 @@ def test_lanternfish_cycle():
     assert len(lanternfish_cycle(parse_input(example_input), 0)) == 5
     assert len(lanternfish_cycle(parse_input(example_input), 18)) == 26
     assert len(lanternfish_cycle(parse_input(example_input), 80)) == 5934
+
+    # Solve AoC 6 part 1
+    assert len(lanternfish_cycle(parse_input(input), 80)) == None
