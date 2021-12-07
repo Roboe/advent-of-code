@@ -64,4 +64,4 @@ def test_calculate_minimal_fuel_fixed():
     assert calculate_minimal_fuel_fixed(parse_input(example_input)) == 168
 
     # Solve AoC 7 part 2
-    assert calculate_minimal_fuel_fixed(parse_input(input)) == None
+    assert calculate_minimal_fuel_fixed(parse_input(input)) == 96744904
