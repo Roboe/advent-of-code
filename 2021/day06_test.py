@@ -1,5 +1,7 @@
 # https://adventofcode.com/2021/day/6
 
+import itertools
+
 with open("day06.input.txt", "r") as f:
     input = f.read()
 
@@ -44,3 +46,43 @@ def test_lanternfish_cycle():
 
     # Solve AoC 6 part 1
     assert len(lanternfish_cycle(parse_input(input), 80)) == 390011
+
+
+def calculate_total_lanternfishes(lanternfishes, days=0):
+    initial_lanternfishes_by_timer = {
+        internal_timer: len(tuple(grouped_lanternfishes))
+        for internal_timer, grouped_lanternfishes in itertools.groupby(
+            sorted(lanternfishes)
+        )
+    }
+
+    lanternfishes_by_timer = {
+        timer: initial_lanternfishes_by_timer[timer]
+        if timer in initial_lanternfishes_by_timer.keys()
+        else 0
+        for timer in range(0, 8 + 1)
+    }
+
+    for _ in range(0, days):
+        newborns = to_be_reset = lanternfishes_by_timer[0]
+
+        lanternfishes_by_timer = {
+            (timer - 1): count
+            for timer, count in lanternfishes_by_timer.items()
+            if timer != 0
+        }
+        lanternfishes_by_timer[6] += to_be_reset
+        lanternfishes_by_timer[8] = newborns
+
+    return sum(lanternfishes_by_timer.values())
+
+
+def test_lanternfish_cycle_optimized():
+    assert calculate_total_lanternfishes(parse_input(example_input), 0) == 5
+    assert calculate_total_lanternfishes(parse_input(example_input), 18) == 26
+    assert calculate_total_lanternfishes(parse_input(example_input), 80) == 5934
+    assert calculate_total_lanternfishes(parse_input(input), 80) == 390011
+    assert calculate_total_lanternfishes(parse_input(example_input), 256) == 26984457539
+
+    # Solve AoC part 2
+    assert calculate_total_lanternfishes(parse_input(input), 256) == None
