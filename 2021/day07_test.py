@@ -37,4 +37,4 @@ def test_calculate_minimal_fuel():
     assert calculate_minimal_fuel(parse_input(example_input)) == 37
 
     # Solve AoC 7 part 1
-    assert calculate_minimal_fuel(parse_input(input)) == None
+    assert calculate_minimal_fuel(parse_input(input)) == 343605
