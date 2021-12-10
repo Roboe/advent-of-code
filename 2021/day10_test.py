@@ -147,4 +147,4 @@ def test_calculate_autocomplete_score():
     assert calculate_autocomplete_score(example_input) == 288957
 
     # Solve AoC 10 part 2
-    assert calculate_autocomplete_score(input) == None
+    assert calculate_autocomplete_score(input) == 3646451424
