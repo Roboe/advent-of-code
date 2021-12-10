@@ -75,4 +75,4 @@ def test_calculate_syntax_error_score():
     assert calculate_syntax_error_score(example_input) == 26397
 
     # Solve AoC 10 part 1
-    assert calculate_syntax_error_score(input) == None
+    assert calculate_syntax_error_score(input) == 442131
