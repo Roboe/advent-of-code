@@ -134,8 +134,7 @@ def calculate_autocomplete_score(lines):
         if check_first_illegal_character(line) == None
     ]
 
-    scores = list(map(calculate_completion_string_score, completion_strings))
-    scores.sort()
+    scores = sorted(map(calculate_completion_string_score, completion_strings))
 
     # NOTE it's assured there'll be an odd number of incomplete lines
     middle_score = scores[(len(scores) // 2)]
