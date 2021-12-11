@@ -85,4 +85,4 @@ def test_lanternfish_cycle_optimized():
     assert calculate_total_lanternfishes(parse_input(example_input), 256) == 26984457539
 
     # Solve AoC part 2
-    assert calculate_total_lanternfishes(parse_input(input), 256) == None
+    assert calculate_total_lanternfishes(parse_input(input), 256) == 1746710169834
