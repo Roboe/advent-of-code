@@ -180,7 +180,26 @@ def test_fold():
     )
 
 
-def print_dots(dots, len_x, len_y):
+def calc_grid_length(instructions):
+    len_x = 0
+    len_y = 0
+    for instruction in instructions:
+        axis, line = instruction
+
+        if axis == "x":
+            len_x = line
+        elif axis == "y":
+            len_y = line
+
+    if len_x > len_y:
+        len_x, len_y = len_y, len_x
+
+    return (len_x, len_y)
+
+
+def print_dots(dots, instructions):
+    len_x, len_y = calc_grid_length(instructions)
+
     grid = [["."] * len_x for _ in range(0, len_y)]
 
     for dot in dots:
@@ -190,8 +209,12 @@ def print_dots(dots, len_x, len_y):
 
 
 def test_print_dots():
+    example_dots, example_instructions = parse_input(example_input)
     assert (
-        print_dots(fold(*parse_input(example_input)), 5, 7)
+        print_dots(
+            fold(example_dots, example_instructions),
+            example_instructions,
+        )
         == """#####
 #...#
 #...#
@@ -202,8 +225,9 @@ def test_print_dots():
     )
 
     # Solve AoC 13 part 2 ('FGKCKBZG')
+    dots, instructions = parse_input(input)
     assert (
-        print_dots(fold(*parse_input(input)), 6, 40)
+        print_dots(fold(dots, instructions), instructions)
         == """######
 #.#...
 #.#...
