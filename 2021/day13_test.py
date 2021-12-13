@@ -84,7 +84,7 @@ def fold_dot_by_line(dot, instruction):
 
     # fold left (vertically)
     elif axis == "x":
-        raise NotImplementedError("vertical fold")
+        return Dot(line * 2 - dot.x, dot.y) if dot.x > line else dot
 
     else:
         raise ValueError('Instruction axis should be "y" or "x"')
@@ -106,4 +106,4 @@ def test_count_dots_after_first_fold():
     assert count_dots_after_first_fold(*parse_input(example_input)) == 17
 
     # Solve AoC 13 part 1
-    assert count_dots_after_first_fold(*parse_input(input)) == None
+    assert count_dots_after_first_fold(*parse_input(input)) == 687
