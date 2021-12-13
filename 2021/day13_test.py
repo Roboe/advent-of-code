@@ -107,3 +107,99 @@ def test_count_dots_after_first_fold():
 
     # Solve AoC 13 part 1
     assert count_dots_after_first_fold(*parse_input(input)) == 687
+
+
+def fold(dots, instructions):
+    folded_dots = dots
+    for instruction in instructions:
+        folded_dots = [
+            fold_dot_by_line(dot, instruction)
+            for dot in folded_dots
+            if dot._asdict()[instruction.axis] != instruction.line
+        ]
+
+    return set(folded_dots)
+
+
+def test_fold():
+    example_dots, example_instructions = parse_input(example_input)
+    assert fold(example_dots, example_instructions[0:1]) == set(
+        (
+            # #.##..#..#.
+            Dot(0, 0),
+            Dot(2, 0),
+            Dot(3, 0),
+            Dot(6, 0),
+            Dot(9, 0),
+            # #...#......
+            Dot(0, 1),
+            Dot(4, 1),
+            # ......#...#
+            Dot(6, 2),
+            Dot(10, 2),
+            # #...#......
+            Dot(0, 3),
+            Dot(4, 3),
+            # .#.#..#.###
+            Dot(1, 4),
+            Dot(3, 4),
+            Dot(6, 4),
+            Dot(8, 4),
+            Dot(9, 4),
+            Dot(10, 4),
+            # ...........
+            # ...........
+        )
+    )
+    assert fold(example_dots, example_instructions) == set(
+        (
+            # #####
+            Dot(0, 0),
+            Dot(1, 0),
+            Dot(2, 0),
+            Dot(3, 0),
+            Dot(4, 0),
+            # #...#
+            Dot(0, 1),
+            Dot(4, 1),
+            # #...#
+            Dot(0, 2),
+            Dot(4, 2),
+            # #...#
+            Dot(0, 3),
+            Dot(4, 3),
+            # #####
+            Dot(0, 4),
+            Dot(1, 4),
+            Dot(2, 4),
+            Dot(3, 4),
+            Dot(4, 4),
+            # .....
+            # .....
+        )
+    )
+
+
+def print_dots(dots, len_x, len_y):
+    grid = [["."] * len_x for _ in range(0, len_y)]
+
+    for dot in dots:
+        grid[dot.x][dot.y] = "#"
+
+    return "\n".join(["".join(line) for line in grid])
+
+
+def test_print_dots():
+    assert (
+        print_dots(fold(*parse_input(example_input)), 5, 7)
+        == """#####
+#...#
+#...#
+#...#
+#####
+.....
+....."""
+    )
+
+    # Solve AoC 13 part 2
+    assert print_dots(fold(*parse_input(input)), 6, 40) == None
