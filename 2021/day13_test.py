@@ -39,7 +39,7 @@ def parse_input(raw_input):
     dots = tuple(Dot(*map(int, point.split(","))) for point in raw_dots.splitlines())
 
     instructions = tuple(
-        (instruction[11], int(instruction[13:]))
+        Instruction(instruction[11], int(instruction[13:]))
         for instruction in raw_instructions.splitlines()
     )
 
@@ -73,3 +73,37 @@ def test_parse_input():
             Instruction("x", 5),
         ),
     )
+
+
+def fold_dot_by_line(dot, instruction):
+    axis, line = instruction
+
+    # fold up (horizontally)
+    if axis == "y":
+        return Dot(dot.x, line * 2 - dot.y) if dot.y > line else dot
+
+    # fold left (vertically)
+    elif axis == "x":
+        raise NotImplementedError("vertical fold")
+
+    else:
+        raise ValueError('Instruction axis should be "y" or "x"')
+
+
+def count_dots_after_first_fold(dots, instructions):
+    first_instruction = instructions[0]
+
+    folded_dots = [
+        fold_dot_by_line(dot, first_instruction)
+        for dot in dots
+        if dot._asdict()[first_instruction.axis] != first_instruction.line
+    ]
+
+    return len(set(folded_dots))
+
+
+def test_count_dots_after_first_fold():
+    assert count_dots_after_first_fold(*parse_input(example_input)) == 17
+
+    # Solve AoC 13 part 1
+    assert count_dots_after_first_fold(*parse_input(input)) == None
